@@ -1,0 +1,23 @@
+{
+  "name": "belajar-crypto",
+  "version": "1.0.0",
+  "description": "Keamanan data dan jaringan",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon -e html,js,css server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sutanlab/belajar-crypto.git"
+  },
+  "author": "Sutan Nst.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sutanlab/belajar-crypto/issues"
+  },
+  "homepage": "https://github.com/sutanlab/belajar-crypto#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "nodemon": "^1.18.10"
+  }
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Belajar Crypto Algorithm</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      background: lightblue;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    #wrapper {
+      width: 70%;
+      margin: 80px auto;
+      text-align: center;
+    }
+    #wrapper > div {
+      margin: auto;
+      text-align: center;
+      border-radius: 10px;
+      border: solid green 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrapper">
+    <h1>Belajar Crypto Algorithm</h1>
+    <div class="form">
+      <h2>Enkripsi Plain Text</h2>
+      <form id="encrypt">
+        <input type="text" id="encrypt-input" />
+        <button type="submit">Enkripsi</button>
+        <p>Hasil Enkripsi: <b id="encrypt-result"></b></p>
+      </form>
+    </div>
+    <br>
+    <div class="form">
+      <h2>Dekripsi Plain Text</h2>
+      <form id="decrypt">
+        <input type="text" id="decrypt-input" />
+        <button type="submit">Dekripsi</button>
+        <p>Hasil Dekripsi: <b id="decrypt-result"></b></p>
+      </form>
+    </div>
+  </div>
+  <script>
+    var xhr = new XMLHttpRequest();
+    
+    function htmlEntities(str) {
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function xhrReady(elem) {
+      xhr.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+          elem.innerHTML = htmlEntities(this.responseText);
+        }
+      }
+    }
+
+    document.getElementById('encrypt')
+      .addEventListener('submit', function(event) {
+        event.preventDefault();
+        xhrReady(document.getElementById("encrypt-result"));
+        xhr.open('PATCH', '/encrypt/' + encodeURIComponent(document.getElementById('encrypt-input').value));
+        xhr.send();
+      })
+
+    document.getElementById('decrypt')
+      .addEventListener('submit', function(event) {
+        event.preventDefault();
+        xhrReady(document.getElementById("decrypt-result"));
+        xhr.open('PATCH', '/decrypt/' + encodeURIComponent(document.getElementById('decrypt-input').value));
+        xhr.send();
+      })
+  </script>
+</body>
+</html>
