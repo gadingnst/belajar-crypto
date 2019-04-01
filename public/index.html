@@ -1,12 +1,3 @@
-<?php 
-  require_once('crypto.php');
-  if (isset($_POST['enkripsi'])) {
-    $enkripsi = htmlentities(encrypt($_POST['enkripsi']));
-  }
-  if (isset($_POST['dekripsi'])) {
-    $dekripsi = htmlentities(decrypt($_POST['dekripsi']));
-  }
-?>
 <!DOCTYPE html>
 <html>
 <head>
