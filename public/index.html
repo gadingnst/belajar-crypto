@@ -1,52 +1,95 @@
+<?php 
+  require_once('crypto.php');
+  if (isset($_POST['enkripsi'])) {
+    $enkripsi = htmlentities(encrypt($_POST['enkripsi']));
+  }
+  if (isset($_POST['dekripsi'])) {
+    $dekripsi = htmlentities(decrypt($_POST['dekripsi']));
+  }
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Belajar Crypto Algorithm</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     * {
       box-sizing: border-box;
     }
-    body {
-      background: lightblue;
+    textarea {
       width: 100%;
-      margin: 0;
-      padding: 0;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
     }
-    #wrapper {
-      width: 70%;
-      margin: 80px auto;
+    input[type=submit] {
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px 20px;
+      background: lightgreen;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .container {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+      width: 85%;
+      margin: 25px auto;
       text-align: center;
     }
-    #wrapper > div {
-      margin: auto;
-      text-align: center;
-      border-radius: 10px;
-      border: solid green 5px;
+    #enkripsi {
+      background: skyblue;
+    }
+    #dekripsi {
+      background: magenta;
+    }
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
     }
   </style>
+  <title>Belajar Crypto</title>
 </head>
-<body>
-  <div id="wrapper">
-    <h1>Belajar Crypto Algorithm</h1>
-    <div class="form">
-      <h2>Enkripsi Plain Text</h2>
-      <form id="encrypt">
-        <input type="text" id="encrypt-input" />
-        <button type="submit">Enkripsi</button>
-        <p>Hasil Enkripsi: <b id="encrypt-result"></b></p>
-      </form>
-    </div>
-    <br>
-    <div class="form">
-      <h2>Dekripsi Plain Text</h2>
-      <form id="decrypt">
-        <input type="text" id="decrypt-input" />
-        <button type="submit">Dekripsi</button>
-        <p>Hasil Dekripsi: <b id="decrypt-result"></b></p>
-      </form>
+<body style="background: darkblue; text-align: center;">
+  <h1 style="color: white;">Belajar Crypto</h1>
+  <div id="enkripsi" class="container">
+    <h2>Enkripsi Data</h2>
+    <form id="encrypt">
+      <div class="row">
+        <div>
+          <textarea id="encrypt-input" placeholder="Masukkan Plain Text.." style="height:120px"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <input type="submit" id="btn-enkripsi" value="Enkripsi Data">
+      </div>
+      <div class="row">
+        <div>
+          <textarea id="encrypt-result" disabled placeholder="Hasil.." style="height:120px"></textarea>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div id="dekripsi" class="container">
+    <h2>Dekripsi Data</h2>
+    <form id="decrypt">
+      <div class="row">
+        <div>
+          <textarea id="decrypt-input" placeholder="Masukkan Secret Text.." style="height:120px"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <input type="submit" id="btn-dekripsi" value="Dekripsi Data">
+      </div>
+    </form>
+    <div class="row">
+      <div>
+        <textarea id="decrypt-result" disabled placeholder="Hasil.." style="height:120px"></textarea>
+      </div>
     </div>
   </div>
   <script type="text/javascript" src="index.js"></script>
