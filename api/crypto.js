@@ -1,25 +1,30 @@
+const START_ASCII = 32, END_ASCII = 94
+
 const charTables = () => {
   chars = []
-  for (let i = 0; i < 94; i++) {
-    chars.push(String.fromCharCode(i + 32))
+  for (let i = 0; i < END_ASCII; i++) {
+    chars.push(String.fromCharCode(i + START_ASCII))
   }
   return chars
 }
 
-const charLimit = code => code < 0 ? code + 94 : code
+const charLimit = code => code < 0 ? code + END_ASCII : code
 
-const formula = number => {
-  const result = 3.14 * (number * number)
-  return parseInt(result % 94)
+const formula = (key, num) => {
+  const 
+    secretKey = 'sutangadingfadhillahnasution',
+    r = (num + key) * secretKey.length
+    result = 3.14 * (r * r)
+  return parseInt(result % END_ASCII)
 }
 
 const encrypt = data => {
   let encrypted = ''
   for(let i = 0; i < data.length; i++) {
     const char = data.charAt(i)
-    for(let j = 0; j < 94; j++) {
+    for(let j = 0; j < END_ASCII; j++) {
       if(charTables()[j] == char) {
-        index = charLimit(j + formula(i)) % 94
+        index = charLimit(j + formula(data.length, i)) % END_ASCII
         encrypted += charTables()[index]
       }
     }
@@ -31,9 +36,9 @@ const decrypt = data => {
   let decrypted = ''
   for(let i = 0; i < data.length; i++) {
     const char = data.charAt(i)
-    for(let j = 0; j < 94; j++) {
+    for(let j = 0; j < END_ASCII; j++) {
       if(charTables()[j] === char) {
-        index = charLimit(j - formula(i)) % 94
+        index = charLimit(j - formula(data.length, i)) % END_ASCII
         decrypted += charTables()[index]
       }
     }
